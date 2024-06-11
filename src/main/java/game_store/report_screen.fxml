@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="game_store.ReportScreenController">
+    <top>
+        <HBox spacing="10">
+            <Button fx:id="stock_screen_switch"
+                    text="Stock counts"
+                    onAction="#handleStockCountsTransition"
+            />
+            <Button fx:id="stock_location_screen_switch"
+                    text="Stock locations"
+                    onAction="#handleStockLocationCountsTransition"
+            />
+            <Button fx:id="genre_screen_switch"
+                    text="Genre popularity"
+                    onAction="#handleGenreTransition"
+            />
+            <Button fx:id="report_screen_switch"
+                    text="create report or upload data"
+                    onAction="#handleReportTransition"
+            />
+
+        </HBox>
+    </top>
+
+
+    <center>
+        <GridPane xmlns="http://javafx.com/javafx"
+                  xmlns:fx="http://javafx.com/fxml"
+                  fx:id = 'gridPane'
+                  stylesheets="@Login.css">
+
+            <Text id="welcome-text"
+                  text="Create reports here"
+                  GridPane.columnIndex="0"
+                  GridPane.rowIndex="0"
+                  GridPane.columnSpan="2"
+            />
+
+
+        </GridPane>
+
+    </center>
+
+</BorderPane>
+
+

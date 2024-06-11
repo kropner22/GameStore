@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="game_store.HomeScreenController">
+    <top>
+        <HBox spacing="10">
+            <Button fx:id="stock_screen_switch"
+                    text="Stocks"
+                    onAction="#handleStockCountsTransition"
+            />
+            <Button fx:id="report_screen_switch"
+                    text="Reports"
+                    onAction="#handleReportTransition"
+            />
+
+        </HBox>
+    </top>
+
+
+    <center>
+        <GridPane xmlns="http://javafx.com/javafx"
+                  xmlns:fx="http://javafx.com/fxml"
+                  fx:id = 'gridPane'
+                  stylesheets="@Login.css">
+
+            <Text id="welcome-text"
+                  text="Game Store Home Screen"
+                  GridPane.columnIndex="0"
+                  GridPane.rowIndex="0"
+                  GridPane.columnSpan="2"
+            />
+
+            <Label fx:id="welcomeMessage"
+                   GridPane.columnIndex="0"
+                   GridPane.rowIndex="1"
+            />
+
+        </GridPane>
+
+    </center>
+
+</BorderPane>
+
+
