@@ -1,52 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.control.Button?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Text?>
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="game_store.StockScreenController">
-    <top>
-        <HBox spacing="10">
-            <Button fx:id="stock_screen_switch"
-                    text="Stock counts"
-                    onAction="#handleStockCountsTransition"
-            />
-            <Button fx:id="stock_location_screen_switch"
-                    text="Stock locations"
-                    onAction="#handleStockLocationCountsTransition"
-            />
-            <Button fx:id="genre_screen_switch"
-                    text="Genre popularity"
-                    onAction="#handleGenreTransition"
-            />
-            <Button fx:id="report_screen_switch"
-                    text="create report or upload data"
-                    onAction="#handleReportTransition"
-            />
 
-        </HBox>
-    </top>
-
-
-    <center>
-        <GridPane xmlns="http://javafx.com/javafx"
-                  xmlns:fx="http://javafx.com/fxml"
-                  fx:id = 'gridPane'
-                  stylesheets="@Login.css">
-
-            <Text id="welcome-text"
-                  text="Game Store Stock Screen"
-                  GridPane.columnIndex="0"
-                  GridPane.rowIndex="0"
-                  GridPane.columnSpan="2"
-            />
-
-
-        </GridPane>
-
-    </center>
-
-</BorderPane>
-
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game_store.StockScreenController">
+<children>
+    <BorderPane prefHeight="400.0" prefWidth="600.0">
+        <left>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                <children>
+                    <Button fx:id="home_screen_switch"
+                            text="Home"
+                            onAction="#handleHomeTransition"
+                    />
+                    <Button fx:id="stock_screen_switch"
+                            text="Stocks"
+                            onAction="#handleStockCountsTransition"
+                    />
+                    <Button fx:id="report_screen_switch"
+                            text="Reports"
+                            onAction="#handleReportTransition"
+                    />
+                </children>
+            </VBox>
+        </left>
+        <top>
+            <HBox prefHeight="80.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+        </top>
+        <center>
+            <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                <columns>
+                    <TableColumn prefWidth="75.0" text="C1" />
+                    <TableColumn prefWidth="75.0" text="C2" />
+                </columns>
+            </TableView>
+        </center>
+        <bottom>
+            <BorderPane prefHeight="80.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                <center>
+                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Upload Stocks and Sales Data" BorderPane.alignment="CENTER" />
+                </center>
+                <BorderPane.margin>
+                    <Insets />
+                </BorderPane.margin>
+            </BorderPane>
+        </bottom>
+    </BorderPane>
+</children>
+</AnchorPane>

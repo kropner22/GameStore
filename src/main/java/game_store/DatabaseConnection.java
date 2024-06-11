@@ -19,10 +19,6 @@ public class DatabaseConnection
     public static List<?> getEmployee(String username, String password)
     {
         openDBSession();
-        //Query query = databaseSession.createQuery("FROM books.employee WHERE username = :username AND password = :password");
-        //query.setParameter("username", username);
-      //  query.setParameter("password", password);
-      //  Query query = databaseSession.createQuery("from employee where username = 'Jane Doe' and password = 'comp_sci'");
         Query query = databaseSession.createQuery("from employee where username = '"+ username + "' and password = '" + password + "'");
         List<?> list = query.list();
         closeDBSession();
@@ -45,7 +41,7 @@ public class DatabaseConnection
     }
     private static int getNextID()
     {
-        Query query = databaseSession.createQuery("select max(ID) from books.employee");
+        Query query = databaseSession.createQuery("select max(ID) from game_store.employee");
         System.out.println( query.list().get(0));
         return (Integer) query.list().get(0)+1;
     }
