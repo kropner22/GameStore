@@ -2,20 +2,20 @@ package game_store;
 import javax.persistence.*;
 
 @Entity
-public class employee
+public class Employee
 {
-    private int employeeID;
+    private int employee_id;
     private String username, password;
     @Id
-    public int getEmployeeID()
+    public int getEmployee_id()
     {
-        return employeeID;
+        return employee_id;
     }
-    public void setEmployeeID(int newID)
+    public void setEmployee_id(int newID)
     {
-        employeeID = newID;
+        employee_id = newID;
     }
-    public String getUsername()
+    public String getusername()
     {
         return username;
     }
@@ -23,10 +23,7 @@ public class employee
     {
         username = newName;
     }
-    public String getPassword()
-    {
-        return password;
-    }
+    public String getPassword() { return password; }
     public void setPassword(String newPassword)
     {
         password = newPassword;

@@ -7,10 +7,10 @@ public class DatabaseConnection
 {
     static Session databaseSession = null;
     static SessionFactory sessionFactory = null;
-    public static void addEmployeeToDatabase(employee employeeToAdd)
+    public static void addEmployeeToDatabase(Employee employeeToAdd)
     {
         openDBSession();
-        employeeToAdd.setEmployeeID(getNextID());
+        employeeToAdd.setEmployee_id(getNextID());
         databaseSession.beginTransaction();
         databaseSession.save(employeeToAdd);
         databaseSession.getTransaction().commit();
@@ -19,7 +19,7 @@ public class DatabaseConnection
     public static List<?> getEmployee(String username, String password)
     {
         openDBSession();
-        Query query = databaseSession.createQuery("from employee where username = '"+ username + "' and password = '" + password + "'");
+        Query query = databaseSession.createQuery("from Employee where username = '"+ username + "' and password = '" + password + "'");
         List<?> list = query.list();
         closeDBSession();
         return list;
@@ -41,7 +41,7 @@ public class DatabaseConnection
     }
     private static int getNextID()
     {
-        Query query = databaseSession.createQuery("select max(ID) from game_store.employee");
+        Query query = databaseSession.createQuery("select max(employee_id) from game_store.Employee");
         System.out.println( query.list().get(0));
         return (Integer) query.list().get(0)+1;
     }

@@ -12,7 +12,7 @@ public class MainApp extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login_window.fxml")));
-        Scene scene = new Scene(root, 600, 300);
+        Scene scene = new Scene(root, 600, 400);
         primaryStage.setTitle("Video Game Store");
         primaryStage.setScene(scene);
         primaryStage.show();

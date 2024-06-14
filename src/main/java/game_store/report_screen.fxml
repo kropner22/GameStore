@@ -9,23 +9,14 @@
         <left>
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                 <children>
-                    <Button fx:id="home_screen_switch"
-                            text="Home"
-                            onAction="#handleHomeTransition"
-                    />
-                    <Button fx:id="stock_screen_switch"
-                            text="Stocks"
-                            onAction="#handleStockCountsTransition"
-                    />
-                    <Button fx:id="report_screen_switch"
-                            text="Reports"
-                            onAction="#handleReportTransition"
-                    />
+                    <Button fx:id="home_screen_switch" onAction="#handleHomeTransition" text="Home" />
+                    <Button fx:id="stock_screen_switch" onAction="#handleStockCountsTransition" text="Stocks" />
+                    <Button fx:id="report_screen_switch" defaultButton="true" onAction="#handleReportTransition" text="Reports" />
                 </children>
             </VBox>
         </left>
         <top>
-            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <HBox prefHeight="0.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
         </top>
         <bottom>
             <ScrollPane prefHeight="113.0" prefWidth="600.0" BorderPane.alignment="CENTER">
@@ -54,4 +45,3 @@
     </BorderPane>
 </children>
 </AnchorPane>
-

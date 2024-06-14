@@ -26,7 +26,7 @@ public class StockScreenController {
 
         Stage stage = (Stage) home_screen_switch.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("home_screen.fxml"));
-        Scene changeScene = new Scene(root, 600, 300);
+        Scene changeScene = new Scene(root, 600, 400);
         stage.setScene(changeScene);
         stage.show();
 
@@ -39,7 +39,7 @@ public class StockScreenController {
 
         Stage stage = (Stage) stock_screen_switch.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("stock_screen.fxml"));
-        Scene changeScene = new Scene(root, 600, 300);
+        Scene changeScene = new Scene(root, 600, 400);
         stage.setScene(changeScene);
         stage.show();
 
@@ -53,7 +53,7 @@ public class StockScreenController {
 
         Stage stage = (Stage) report_screen_switch.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("report_screen.fxml"));
-        Scene changeScene = new Scene(root, 600, 300);
+        Scene changeScene = new Scene(root, 600, 400);
         stage.setScene(changeScene);
         stage.show();
 

@@ -39,17 +39,17 @@ public class LoginWindowController {
         }
 
         try {
-            List<?> list = DatabaseConnection.getEmployee(username, password); //gets the employee from database
+            List<?> list = DatabaseConnection.getEmployee(username, password); //gets the Employee from database
             if (!list.isEmpty()) {
-                employee emp = (employee)list.get(0);
-                if (emp.getUsername().equals(username)) {
+                Employee emp = (Employee)list.get(0);
+                if (emp.getusername().equals(username)) {
                     if (emp.getPassword().equals(password)) {
                         incorrect_input_message(Alert.AlertType.INFORMATION, "Success", "Login successful!");
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("home_screen.fxml")); // Load the FXML for the home screen
 
                         Stage stage = (Stage) loginButton.getScene().getWindow();
                         Parent root = loader.load(); // Corrected loader usage
-                        Scene changeScene = new Scene(root, 600, 300);
+                        Scene changeScene = new Scene(root, 600, 400);
                         stage.setScene(changeScene);
                         stage.show();
 

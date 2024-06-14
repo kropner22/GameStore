@@ -1,0 +1,57 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name = "game_store.Employee" table = "employee">
+        <id name = "employee_id" column = "employee_id" type = "int" />
+        <property name = "username" column = "username" type = "string"/>
+        <property name = "password" column = "password" type = "string"/>
+    </class>
+
+    <class name = "game_store.Customer" table = "customer">
+        <id name = "customer_id" column = "customer_id" type = "int" />
+        <property name = "name" column = "name" type = "string"/>
+        <property name = "address" column = "address" type = "string"/>
+    </class>
+
+    <class name = "game_store.Order" table = "order">
+        <id name = "order_id" column = "order_id" type = "int" />
+        <property name = "customer_id" column = "customer_id" type = "int"/>
+        <property name = "employee_id" column = "employee_id" type = "int"/>
+        <property name = "date" column = "date" type = "int"/>
+        <property name = "total" column = "total" type = "float"/>
+    </class>
+
+    <class name = "game_store.OrderItems" table = "order_items">
+        <id name = "order_item_id" column = "order_item_id" type = "int" />
+        <property name = "game_id" column = "game_id" type = "int"/>
+        <property name = "console_id" column = "console_id" type = "int"/>
+        <property name = "order_id" column = "order_id" type = "int"/>
+        <property name = "quantity" column = "quantity" type = "int"/>
+    </class>
+
+    <class name = "game_store.Game" table = "game">
+        <id name = "game_id" column = "game_id" type = "int" />
+        <property name = "console_id" column = "console_id" type = "int"/>
+        <property name = "name" column = "name" type = "string"/>
+        <property name = "stock" column = "stock" type = "int"/>
+        <property name = "price" column = "price" type = "float"/>
+        <property name = "sale" column = "sale" type = "boolean"/>
+        <property name = "sale_price" column = "sale_price" type = "float"/>
+        <property name = "developer" column = "developer" type = "string"/>
+        <property name = "genre" column = "genre" type = "string"/>
+    </class>
+
+    <class name = "game_store.Console" table = "console">
+        <id name = "console_id" column = "console_id" type = "int"/>
+        <property name = "name" column = "name" type = "string"/>
+        <property name = "stock" column = "stock" type = "int"/>
+        <property name = "price" column = "price" type = "float"/>
+        <property name = "sale" column = "sale" type = "boolean"/>
+        <property name = "sale_price" column = "sale_price" type = "float"/>
+        <property name = "developer" column = "developer" type = "string"/>
+        <property name = "storage_gb" column = "storage_gigabytes" type = "string"/>
+        <property name = "hybrid" column = "hybrid" type = "boolean"/>
+    </class>
+</hibernate-mapping>

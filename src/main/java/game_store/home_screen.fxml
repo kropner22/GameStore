@@ -13,6 +13,7 @@
                 <children>
                     <Button fx:id="home_screen_switch"
                             text="Home"
+                            defaultButton="true"
                             onAction="#handleHomeTransition"
                     />
                     <Button fx:id="stock_screen_switch"
