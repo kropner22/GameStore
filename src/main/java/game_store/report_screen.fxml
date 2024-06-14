@@ -9,9 +9,9 @@
         <left>
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                 <children>
-                    <Button fx:id="home_screen_switch" onAction="#handleHomeTransition" text="Home" />
-                    <Button fx:id="stock_screen_switch" onAction="#handleStockCountsTransition" text="Stocks" />
-                    <Button fx:id="report_screen_switch" defaultButton="true" onAction="#handleReportTransition" text="Reports" />
+                    <Button fx:id="home_screen_switch" onAction="#handleHomeSwitch" text="Home" />
+                    <Button fx:id="stock_screen_switch" onAction="#handleStockCountsSwitch" text="Stocks" />
+                    <Button fx:id="report_screen_switch" defaultButton="true" onAction="#handleReportSwitch" text="Reports" />
                 </children>
             </VBox>
         </left>

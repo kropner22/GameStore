@@ -1,11 +1,15 @@
 package game_store;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Product {
     public Integer product_id, stock;
     public String name, developer;
     public float price, sale_price;
     public boolean sale;
-
+    @Id
     public int getProduct_id(){
         return product_id;
     }

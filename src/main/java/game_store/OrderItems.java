@@ -1,8 +1,12 @@
 package game_store;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class OrderItems {
     private int order_item_id, game_id, console_id, order_id, quantity;
-
+    @Id
     public int getOrder_item_id() {
         return order_item_id;
     }

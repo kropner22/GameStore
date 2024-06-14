@@ -1,10 +1,14 @@
 package game_store;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Console extends Product {
 
     private int console_id, storage_gb;
     private boolean hybrid;
-
+    @Id
     public int getConsole_id() {
         return console_id;
     }

@@ -7,6 +7,27 @@ public class DatabaseConnection
 {
     static Session databaseSession = null;
     static SessionFactory sessionFactory = null;
+
+    private static void openDBSession()
+    {
+        sessionFactory = new Configuration().configure().buildSessionFactory();
+        databaseSession = sessionFactory.openSession();
+    }
+    private static void closeDBSession()
+    {
+        sessionFactory.close();
+        databaseSession.close();
+        sessionFactory = null;
+        databaseSession = null;
+    }
+    public static List<?> getGames()
+    {
+        openDBSession();
+        Query query = databaseSession.createQuery("from Game");
+        List<?> list = query.list();
+        closeDBSession();
+        return list;
+    }
     public static void addEmployeeToDatabase(Employee employeeToAdd)
     {
         openDBSession();
@@ -23,21 +44,6 @@ public class DatabaseConnection
         List<?> list = query.list();
         closeDBSession();
         return list;
-    }
-    private static void openDBSession()
-    {
-// configure hibernate for application (one per database) & allows creation of sessions
-        sessionFactory = new Configuration().configure().buildSessionFactory();
-// used to get a physical connection with the database
-        databaseSession = sessionFactory.openSession();
-    }
-    private static void closeDBSession()
-    {
-// close session and the session factory instances
-        sessionFactory.close();
-        databaseSession.close();
-        sessionFactory = null;
-        databaseSession = null;
     }
     private static int getNextID()
     {

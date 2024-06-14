@@ -21,9 +21,9 @@ public class HomeScreenController {
         this.stage = stage;
     }
 
-    @FXML protected void handleHomeTransition(ActionEvent event) throws Exception
+    @FXML protected void handleHomeSwitch(ActionEvent event) throws Exception
     {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("home_screen.fxml")); // Load the FXML
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("home_screen.fxml")); 
 
         Stage stage = (Stage) home_screen_switch.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("home_screen.fxml"));
@@ -31,13 +31,13 @@ public class HomeScreenController {
         stage.setScene(changeScene);
         stage.show();
 
-        StockScreenController stockScreenController = loader.getController(); // Get the controller
+        StockScreenController stockScreenController = loader.getController(); 
     }
 
 
-    @FXML protected void handleStockCountsTransition(ActionEvent event) throws Exception
+    @FXML protected void handleStockCountsSwitch(ActionEvent event) throws Exception
     {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("stock_screen.fxml")); // Load the FXML for the home screen
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("stock_screen.fxml")); 
 
         Stage stage = (Stage) stock_screen_switch.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("stock_screen.fxml"));
@@ -45,12 +45,12 @@ public class HomeScreenController {
         stage.setScene(changeScene);
         stage.show();
 
-        StockScreenController stockScreenController = loader.getController(); // Get the controller for the home screen
+        StockScreenController stockScreenController = loader.getController(); 
     }
 
-    @FXML protected void handleReportTransition(ActionEvent event) throws Exception
+    @FXML protected void handleReportSwitch(ActionEvent event) throws Exception
     {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("report_screen.fxml")); // Load the FXML for the home screen
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("report_screen.fxml")); 
 
         Stage stage = (Stage) report_screen_switch.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("report_screen.fxml"));
@@ -58,7 +58,7 @@ public class HomeScreenController {
         stage.setScene(changeScene);
         stage.show();
 
-        StockScreenController ReportScreenController = loader.getController(); // Get the controller for the home screen
+        StockScreenController ReportScreenController = loader.getController(); 
     }
 
     @FXML

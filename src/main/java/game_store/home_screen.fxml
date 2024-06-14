@@ -14,15 +14,15 @@
                     <Button fx:id="home_screen_switch"
                             text="Home"
                             defaultButton="true"
-                            onAction="#handleHomeTransition"
+                            onAction="#handleHomeSwitch"
                     />
                     <Button fx:id="stock_screen_switch"
                             text="Stocks"
-                            onAction="#handleStockCountsTransition"
+                            onAction="#handleStockCountsSwitch"
                     />
                     <Button fx:id="report_screen_switch"
                             text="Reports"
-                            onAction="#handleReportTransition"
+                            onAction="#handleReportSwitch"
                     />
                 </children>
             </VBox>

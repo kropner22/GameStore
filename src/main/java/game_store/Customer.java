@@ -1,9 +1,13 @@
 package game_store;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Customer {
     private int customer_id;
     private String name, address;
-
+    @Id
     public int getCustomer_id() {
         return customer_id;
     }

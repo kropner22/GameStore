@@ -45,7 +45,7 @@ public class LoginWindowController {
                 if (emp.getusername().equals(username)) {
                     if (emp.getPassword().equals(password)) {
                         incorrect_input_message(Alert.AlertType.INFORMATION, "Success", "Login successful!");
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("home_screen.fxml")); // Load the FXML for the home screen
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("home_screen.fxml")); 
 
                         Stage stage = (Stage) loginButton.getScene().getWindow();
                         Parent root = loader.load(); // Corrected loader usage
@@ -53,7 +53,7 @@ public class LoginWindowController {
                         stage.setScene(changeScene);
                         stage.show();
 
-                        HomeScreenController homeScreenController = loader.getController(); // Get the controller for the home screen
+                        HomeScreenController homeScreenController = loader.getController(); 
                         homeScreenController.receiveInformation(username);
                     } else {
                         incorrect_input_message(Alert.AlertType.ERROR, "Error", "Invalid username or password.");
