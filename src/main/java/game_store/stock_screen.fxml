@@ -5,32 +5,33 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game_store.StockScreenController">
-<children>
     <BorderPane prefHeight="400.0" prefWidth="600.0">
         <left>
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-                <children>
-                    <Button fx:id="home_screen_switch" onAction="#handleHomeTransition" text="Home" />
-                    <Button fx:id="stock_screen_switch" defaultButton="true" onAction="#handleStockCountsTransition" text="Stocks" />
-                    <Button fx:id="report_screen_switch" onAction="#handleReportTransition" text="Reports" />
-                </children>
+                <Button fx:id="home_screen_switch" onAction="#handleHomeTransition" text="Home" />
+                <Button fx:id="stock_screen_switch" defaultButton="true" onAction="#handleStockCountsTransition" text="Stocks" />
+                <Button fx:id="report_screen_switch" onAction="#handleReportTransition" text="Reports" />
             </VBox>
         </left>
         <top>
             <HBox prefHeight="0.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
         </top>
         <center>
-            <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="GameTable" editable="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                 <columns>
-                    <TableColumn prefWidth="75.0" text="C1" />
-                    <TableColumn prefWidth="75.0" text="C2" />
+                    <TableColumn fx:id="name" prefWidth="75.0" text="Name" />
+                    <TableColumn fx:id="stock" prefWidth="75.0" text="Stock" />
+                    <TableColumn fx:id="price" prefWidth="75.0" text="Price" />
+                    <TableColumn fx:id="sale" prefWidth="75.0" text="Sale" />
+                    <TableColumn fx:id="developer" prefWidth="75.0" text="Developer" />
+                    <TableColumn fx:id="genre" prefWidth="75.0" text="Genre" />
                 </columns>
             </TableView>
         </center>
         <bottom>
             <BorderPane prefHeight="80.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                 <center>
-                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Upload Stocks and Sales Data" BorderPane.alignment="CENTER" />
+                    <Button fx:id="upload_stocks" onAction = "#handleStockUpload" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Upload Stocks Data" BorderPane.alignment="CENTER" />
                 </center>
                 <BorderPane.margin>
                     <Insets />
@@ -38,5 +39,4 @@
             </BorderPane>
         </bottom>
     </BorderPane>
-</children>
 </AnchorPane>

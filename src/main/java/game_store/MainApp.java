@@ -15,6 +15,7 @@ public class MainApp extends Application{
         Scene scene = new Scene(root, 600, 400);
         primaryStage.setTitle("Video Game Store");
         primaryStage.setScene(scene);
+        scene.getStylesheets().add(this.getClass().getResource("Login.css").toExternalForm());
         primaryStage.show();
     }
 
