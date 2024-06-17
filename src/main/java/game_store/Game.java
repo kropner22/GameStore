@@ -8,6 +8,19 @@ public class Game extends Product{
 
     private int game_id, console_id;
     private String genre;
+
+    public Game(String name, int stock, float price, boolean sale, String developer, String genre) {
+        this.name = name;
+        this.stock = stock;
+        this.price = price;
+        this.sale = sale;
+        this.developer = developer;
+        this.genre = genre;
+        if (this.sale)
+            this.price = (float) (this.price*0.9);
+
+    }
+
     @Id
     public int getGame_id() {
         return game_id;

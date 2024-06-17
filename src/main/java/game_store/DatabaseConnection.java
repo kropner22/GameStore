@@ -55,7 +55,7 @@ public class DatabaseConnection
     public static List<?> getLowestStockGame()
     {
         openDBSession();
-        Query query = databaseSession.createQuery("select name,stock from game_store.Game ORDER BY stock");
+        Query query = databaseSession.createQuery("select name,stock from game_store.Game order by stock");
         query.setMaxResults(1);
         List<?> list = query.list();
         closeDBSession();

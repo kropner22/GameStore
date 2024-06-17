@@ -3,21 +3,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game_store.ReportScreenController">
-<children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="game_store.ReportScreenController">
     <BorderPane prefHeight="400.0" prefWidth="600.0">
         <left>
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-                <children>
-                    <Button fx:id="home_screen_switch" onAction="#handleHomeSwitch" text="Home" />
-                    <Button fx:id="stock_screen_switch" onAction="#handleStockCountsSwitch" text="Stocks" />
-                    <Button fx:id="report_screen_switch" defaultButton="true" onAction="#handleReportSwitch" text="Reports" />
-                </children>
+                <Button fx:id="home_screen_switch" onAction="#handleHomeSwitch" text="Home"/>
+                <Button fx:id="stock_screen_switch" onAction="#handleStockCountsSwitch" text="Stocks"/>
+                <Button fx:id="report_screen_switch" defaultButton="true" onAction="#handleReportSwitch"
+                        text="Reports"/>
             </VBox>
         </left>
-         <center>
-            <Button mnemonicParsing="false" prefHeight="201.0" prefWidth="340.0" text="Generate Report" BorderPane.alignment="CENTER" />
-         </center>
+        <center>
+            <Button fx:id="generate_report" onAction="#handleReportGeneration" mnemonicParsing="false" prefHeight="201.0" prefWidth="340.0"
+                    text="Generate Report" BorderPane.alignment="CENTER"/>
+        </center>
     </BorderPane>
-</children>
 </AnchorPane>

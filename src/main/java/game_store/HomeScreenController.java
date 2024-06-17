@@ -70,7 +70,7 @@ public class HomeScreenController {
 
     @FXML protected void handleReportSwitch(ActionEvent event) throws Exception
     {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("report_screen.fxml")); 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("report_screen.fxml"));
 
         Stage stage = (Stage) report_screen_switch.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("report_screen.fxml"));
@@ -78,8 +78,9 @@ public class HomeScreenController {
         stage.setScene(changeScene);
         stage.show();
 
-        StockScreenController ReportScreenController = loader.getController(); 
+        ReportScreenController ReportScreenController = loader.getController();
     }
+
 
     @FXML
     private Text welcomeMessage;
@@ -97,9 +98,8 @@ public class HomeScreenController {
         lowestStockGame.setText("Lowest Stock Game: " + list);
     }
     public void getGameBarChartData(){
-//        XYChart.Series series = new XYChart.Series();
-//        //Query game_name = databaseSession.createQuery("select name from game_store.Game");
-//        //Query game_stock = databaseSession.createQuery("select stock from game_store.Game");
+//        Query game_name = databaseSession.createQuery("select name from game_store.Game");
+//        Query game_stock = databaseSession.createQuery("select stock from game_store.Game");
 //        series.getData().add(new XYChart.Data("Legend of Zelda", 100));
 //        series.getData().add(new XYChart.Data("Halo", 30));
 //        series.getData().add(new XYChart.Data("Call of Duty", 323));
@@ -130,21 +130,45 @@ public class HomeScreenController {
                 gameBarChart.getData().add(series);
                 gameBarChart.setAnimated(false);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException error) {
+            error.printStackTrace();
         }
     }
 
     public void getConsoleBarChartData(){
-        XYChart.Series series = new XYChart.Series();
-        //Query console_name = databaseSession.createQuery("select name from game_store.Console");
-        //Query console_stock = databaseSession.createQuery("select stock from game_store.Console");
-        series.getData().add(new XYChart.Data("Switch", 6));
-        series.getData().add(new XYChart.Data("PS4", 7));
-        series.getData().add(new XYChart.Data("PS5", 4));
-        series.getData().add(new XYChart.Data("Xbox", 10));
-        consoleBarChart.getData().addAll(series);
-        consoleBarChart.setAnimated(false);
+//        XYChart.Series series = new XYChart.Series();
+//        //Query console_name = databaseSession.createQuery("select name from game_store.Console");
+//        //Query console_stock = databaseSession.createQuery("select stock from game_store.Console");
+//        series.getData().add(new XYChart.Data("Switch", 6));
+//        series.getData().add(new XYChart.Data("PS4", 7));
+//        series.getData().add(new XYChart.Data("PS5", 4));
+//        series.getData().add(new XYChart.Data("Xbox", 10));
+//        consoleBarChart.getData().addAll(series);
+//        consoleBarChart.setAnimated(false);
 
+        try (Connection connection = DriverManager.getConnection(url, user, password)) {
+            // SQL query to retrieve product data
+            String query = "SELECT name, stock FROM console";
+            try (PreparedStatement statement = connection.prepareStatement(query);
+                 ResultSet resultSet = statement.executeQuery()) {
+
+                // Create a new series for the BarChart
+                XYChart.Series<String, Number> series = new XYChart.Series<>();
+                series.setName("console");
+
+                // Populate the series with data from the result set
+                while (resultSet.next()) {
+                    String name = resultSet.getString("name");
+                    int stock = resultSet.getInt("stock");
+                    series.getData().add(new XYChart.Data<>(name, stock));
+                }
+
+                // Add the series to the BarChart
+                consoleBarChart.getData().add(series);
+                consoleBarChart.setAnimated(false);
+            }
+        } catch (SQLException error) {
+            error.printStackTrace();
+        }
     }
 }
