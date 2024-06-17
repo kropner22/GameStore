@@ -1,14 +1,10 @@
 package game_store;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import java.util.*;
 
 import java.io.IOException;
@@ -19,17 +15,12 @@ public class LoginWindowController {
 
     @FXML
     private TextField passwordField;
-    private Stage stage;
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
 
     @FXML
     private Button loginButton;
 
     @FXML
-    protected void handleSubmitButtonAction(ActionEvent event) throws Exception {
+    protected void handleSubmitButtonAction() {
         String username = userNameEntry.getText();
         String password = passwordField.getText();
 
@@ -45,11 +36,10 @@ public class LoginWindowController {
                 if (employee.getusername().equals(username)) {
                     if (employee.getPassword().equals(password)) {
                         incorrect_input_message(Alert.AlertType.INFORMATION, "Success", "Login successful!");
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("home_screen.fxml"));
+                        new FXMLLoader(getClass().getResource("home_screen.fxml"));
 
                         HomeScreen homeScreen = new HomeScreen();
                         homeScreen.createHomeScreen(loginButton).show();
-
                     } else {
                         incorrect_input_message(Alert.AlertType.ERROR, "Error", "Invalid username or password.");
                     }

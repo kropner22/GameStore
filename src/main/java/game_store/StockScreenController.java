@@ -1,93 +1,76 @@
+//imports for stock screen
 package game_store;
 
-import com.mysql.cj.x.protobuf.MysqlxCrud;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.jboss.jandex.Main;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
+import java.util.Objects;
+
+import static game_store.MainApp.*;
 
 public class StockScreenController {
+    //calling FXML attributes for stock screen
     @FXML private Button home_screen_switch;
     @FXML private Button stock_screen_switch;
     @FXML private Button report_screen_switch;
     @FXML private Button upload_stocks;
-    private Stage stage;
-    @FXML
-    private GridPane gridPane;
 
-    @FXML
-    private TableView<Game> GameTable;
+    @FXML private TableView<Game> GameTable;
+    @FXML private TableColumn<Game, String> name;
+    @FXML private TableColumn<Game, Integer> stock;
+    @FXML private TableColumn<Game, Float> price;
+    @FXML private TableColumn<Game, Boolean> sale;
+    @FXML private TableColumn<Game, String> developer;
+    @FXML private TableColumn<Game, String> genre;
 
-    @FXML
-    private TableColumn<Game, String> name;
-    @FXML
-    private TableColumn<Game, Integer> stock;
-    @FXML
-    private TableColumn<Game, Float> price;
-    @FXML
-    private TableColumn<Game, Boolean> sale;
-    @FXML
-    private TableColumn<Game, String> developer;
-    @FXML
-    private TableColumn<Game, String> genre;
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
-    @FXML protected void handleHomeSwitch(ActionEvent event) throws Exception
+    //menu buttons for stock screen
+    @FXML protected void handleHomeSwitch() throws Exception
     {
         HomeScreen homeScreen = new HomeScreen();
         homeScreen.createHomeScreen(home_screen_switch).show();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("home_screen.fxml"));
+        new FXMLLoader(getClass().getResource("home_screen.fxml"));
     }
 
-    @FXML protected void handleStockCountsSwitch(ActionEvent event) throws Exception
+    @FXML protected void handleStockCountsSwitch() throws Exception
     {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("stock_screen.fxml"));
 
         Stage stage = (Stage) stock_screen_switch.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("stock_screen.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("stock_screen.fxml")));
         Scene changeScene = new Scene(root, 600, 400);
         stage.setScene(changeScene);
         stage.show();
 
-        StockScreenController stockScreenController = loader.getController();
+        loader.getController();
     }
 
-    @FXML protected void handleReportSwitch(ActionEvent event) throws Exception
+    @FXML protected void handleReportSwitch() throws Exception
     {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("report_screen.fxml")); 
 
         Stage stage = (Stage) report_screen_switch.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("report_screen.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("report_screen.fxml")));
         Scene changeScene = new Scene(root, 600, 400);
         stage.setScene(changeScene);
         stage.show();
 
-        ReportScreenController ReportScreenController = loader.getController();
+        loader.getController();
     }
 
     @FXML protected void handleStockUpload(){
@@ -104,8 +87,9 @@ public class StockScreenController {
         }
     }
 
+    //uploading CSV
     private void processCSV(File file) throws IOException, SQLException {
-        try (Connection connection = DriverManager.getConnection(MainApp.url, MainApp.user, MainApp.password)) {
+        try (Connection connection = DriverManager.getConnection(url, user, password)) {
             // Read the CSV file
             try (BufferedReader br = new BufferedReader(new FileReader(file))) {
                 String line;
@@ -126,6 +110,7 @@ public class StockScreenController {
         }
     }
 
+    // Stock table
     @FXML
     public void initialize() {
         name.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -143,7 +128,7 @@ public class StockScreenController {
     }
 
     private void loadDataFromDatabase() {
-        try (Connection connection = DriverManager.getConnection(MainApp.url, MainApp.user, MainApp.password);
+        try (Connection connection = DriverManager.getConnection(url, user, password);
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery("SELECT name,stock,price,sale,developer,genre FROM game;")) {
 

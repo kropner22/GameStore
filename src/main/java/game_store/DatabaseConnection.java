@@ -8,11 +8,14 @@ public class DatabaseConnection
     static Session databaseSession = null;
     static SessionFactory sessionFactory = null;
 
+    //opens database
     private static void openDBSession()
     {
         sessionFactory = new Configuration().configure().buildSessionFactory();
         databaseSession = sessionFactory.openSession();
     }
+
+    //closes database
     private static void closeDBSession()
     {
         sessionFactory.close();
@@ -20,6 +23,8 @@ public class DatabaseConnection
         sessionFactory = null;
         databaseSession = null;
     }
+
+    //retrieves games table
     public static List<?> getGames()
     {
         openDBSession();
@@ -28,15 +33,8 @@ public class DatabaseConnection
         closeDBSession();
         return list;
     }
-    public static void addEmployeeToDatabase(Employee employeeToAdd)
-    {
-        openDBSession();
-        employeeToAdd.setEmployee_id(getNextID());
-        databaseSession.beginTransaction();
-        databaseSession.save(employeeToAdd);
-        databaseSession.getTransaction().commit();
-        closeDBSession();
-    }
+
+    //retrieves employee with a given name and password
     public static List<?> getEmployee(String username, String password)
     {
         openDBSession();
@@ -45,17 +43,23 @@ public class DatabaseConnection
         closeDBSession();
         return list;
     }
-    private static int getNextID()
-    {
-        Query query = databaseSession.createQuery("select max(employee_id) from game_store.Employee");
-        System.out.println( query.list().get(0));
-        return (Integer) query.list().get(0)+1;
-    }
 
+    //returns lowest stock game
     public static List<?> getLowestStockGame()
     {
         openDBSession();
         Query query = databaseSession.createQuery("select name,stock from game_store.Game order by stock");
+        query.setMaxResults(1);
+        List<?> list = query.list();
+        closeDBSession();
+        return list;
+    }
+
+    //returns lowest stock console
+    public static List<?> getLowestStockConsole()
+    {
+        openDBSession();
+        Query query = databaseSession.createQuery("select name,stock from game_store.Console order by stock");
         query.setMaxResults(1);
         List<?> list = query.list();
         closeDBSession();

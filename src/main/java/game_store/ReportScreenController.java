@@ -1,3 +1,4 @@
+//imports for report screen
 package game_store;
 
 import javafx.event.ActionEvent;
@@ -6,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -14,53 +14,52 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.util.Objects;
+
+import static game_store.MainApp.*;
 
 public class ReportScreenController {
+    //calling FXML attributes from report screen
     @FXML private Button home_screen_switch;
     @FXML private Button stock_screen_switch;
     @FXML private Button report_screen_switch;
     @FXML private Button generate_report;
-    private Stage stage;
-    @FXML
-    private GridPane gridPane;
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
 
-    @FXML protected void handleHomeSwitch(ActionEvent event) throws Exception
+    @FXML protected void handleHomeSwitch() throws Exception
     {
         HomeScreen homeScreen = new HomeScreen();
         homeScreen.createHomeScreen(home_screen_switch).show();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("home_screen.fxml"));
+        new FXMLLoader(getClass().getResource("home_screen.fxml"));
     }
 
-    @FXML protected void handleStockCountsSwitch(ActionEvent event) throws Exception
+    @FXML protected void handleStockCountsSwitch() throws Exception
     {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("stock_screen.fxml"));
 
         Stage stage = (Stage) stock_screen_switch.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("stock_screen.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("stock_screen.fxml")));
         Scene changeScene = new Scene(root, 600, 400);
         stage.setScene(changeScene);
         stage.show();
 
-        StockScreenController stockScreenController = loader.getController();
+        loader.getController();
     }
 
-    @FXML protected void handleReportSwitch(ActionEvent event) throws Exception
+    @FXML protected void handleReportSwitch() throws Exception
     {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("report_screen.fxml"));
 
         Stage stage = (Stage) report_screen_switch.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("report_screen.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("report_screen.fxml")));
         Scene changeScene = new Scene(root, 600, 400);
         stage.setScene(changeScene);
         stage.show();
 
-        ReportScreenController ReportScreenController = loader.getController();
+        loader.getController();
     }
 
 
+    //creating a txt report file
     @FXML
     private void handleReportGeneration() {
         FileChooser fileChooser = new FileChooser();
@@ -74,8 +73,9 @@ public class ReportScreenController {
             exportDataToFile(outputFile);
         }
     }
+    @SuppressWarnings("CallToPrintStackTrace")
     private void exportDataToFile(String outputFile) {
-        try (Connection connection = DriverManager.getConnection(MainApp.url, MainApp.user, MainApp.password);
+        try (Connection connection = DriverManager.getConnection(url, user, password);
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery("SELECT * FROM summative_database.order;");
              PrintWriter writer = new PrintWriter(new FileWriter(outputFile))) {

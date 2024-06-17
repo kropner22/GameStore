@@ -23,6 +23,7 @@ public class HomeScreen {
         HomeScreenController homeScreenController = loader.getController();
         homeScreenController.getGameBarChartData();
         homeScreenController.getConsoleBarChartData();
+        //homeScreenController.getLowestStockGame();
         return stage;
     }
 }
