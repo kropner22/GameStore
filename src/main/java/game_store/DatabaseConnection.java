@@ -51,4 +51,14 @@ public class DatabaseConnection
         System.out.println( query.list().get(0));
         return (Integer) query.list().get(0)+1;
     }
+
+    public static List<?> getLowestStockGame()
+    {
+        openDBSession();
+        Query query = databaseSession.createQuery("select name,stock from game_store.Game ORDER BY stock");
+        query.setMaxResults(1);
+        List<?> list = query.list();
+        closeDBSession();
+        return list;
+    }
 }

@@ -3,50 +3,35 @@
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Text?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game_store.HomeScreenController">
-<children>
     <BorderPane prefHeight="400.0" prefWidth="600.0">
         <left>
             <VBox prefHeight="200.0" prefWidth="101.0" BorderPane.alignment="CENTER">
-                <children>
-                    <Button fx:id="home_screen_switch"
-                            text="Home"
-                            defaultButton="true"
-                            onAction="#handleHomeSwitch"
-                    />
-                    <Button fx:id="stock_screen_switch"
-                            text="Stocks"
-                            onAction="#handleStockCountsSwitch"
-                    />
-                    <Button fx:id="report_screen_switch"
-                            text="Reports"
-                            onAction="#handleReportSwitch"
-                    />
-                </children>
+                <Button fx:id="home_screen_switch" defaultButton="true" onAction="#handleHomeSwitch" text="Home" />
+                <Button fx:id="stock_screen_switch" onAction="#handleStockCountsSwitch" text="Stocks" />
+                <Button fx:id="report_screen_switch" onAction="#handleReportSwitch" text="Reports" />
             </VBox>
         </left>
         <bottom>
-            <HBox prefHeight="195.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-                <children>
-                    <StackedBarChart prefHeight="195.0" prefWidth="291.0">
-                        <xAxis>
-                            <CategoryAxis side="BOTTOM" />
-                        </xAxis>
-                        <yAxis>
-                            <NumberAxis side="LEFT" />
-                        </yAxis>
-                    </StackedBarChart>
-                    <LineChart prefHeight="195.0" prefWidth="307.0">
-                        <xAxis>
-                            <CategoryAxis side="BOTTOM" />
-                        </xAxis>
-                        <yAxis>
-                            <NumberAxis side="LEFT" />
-                        </yAxis>
-                    </LineChart>
-                </children>
+            <HBox prefHeight="283.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <BarChart fx:id="gameBarChart" title="Game Stock Levels">
+              <xAxis>
+                <CategoryAxis fx:id="caGameStock" label="Game" side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="naGameStock" label="Stock" side="LEFT" />
+              </yAxis>
+            </BarChart>
+            <BarChart fx:id="consoleBarChart" title="Console Stock Levels">
+              <xAxis>
+                <CategoryAxis fx:id="caConsoleStock" label="Console" side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="naConsoleStock" label="Stock" side="LEFT" />
+              </yAxis>
+            </BarChart>
             </HBox>
         </bottom>
         <center>
@@ -56,27 +41,28 @@
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
         </right>
         <center>
-            <GridPane xmlns="http://javafx.com/javafx"
-                      xmlns:fx="http://javafx.com/fxml"
-                      fx:id = 'gridPane'
-                      stylesheets="@Login.css">
+            <GridPane fx:id="gridPane" stylesheets="@Login.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 
-                <Text id="welcome-text"
-                      text="Game Store Home Screen"
-                      GridPane.columnIndex="0"
-                      GridPane.rowIndex="0"
-                      GridPane.columnSpan="2"
-                />
+                <Text id="welcome-text" text="Game Store Home Screen" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
 
-                <Label fx:id="welcomeMessage"
-                       GridPane.columnIndex="0"
-                       GridPane.rowIndex="1"
-                />
+                <Text fx:id="welcomeMessage" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                <Text fx:id="lowestStockGame" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                <Text fx:id="lowestStockConsole" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+            <columnConstraints>
+               <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
 
             </GridPane>
 
         </center>
     </BorderPane>
-</children>
 </AnchorPane>
-

@@ -1,8 +1,11 @@
 package game_store;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,12 +19,15 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class StockScreenController {
+public class StockScreenController implements Initializable {
     @FXML private Button home_screen_switch;
     @FXML private Button stock_screen_switch;
     @FXML private Button report_screen_switch;
@@ -53,22 +59,17 @@ public class StockScreenController {
 //    public void initialize() {
 //        List<Game> name = getName();
 //
-//        firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-//
 //        myTableView.setItems(FXCollections.observableArrayList(players));
 //    }
+
     @FXML protected void handleHomeSwitch(ActionEvent event) throws Exception
     {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("home_screen.fxml")); 
-
-        Stage stage = (Stage) home_screen_switch.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("home_screen.fxml"));
-        Scene changeScene = new Scene(root, 600, 400);
-        stage.setScene(changeScene);
-        stage.show();
-
+        HomeScreen homeScreen = new HomeScreen();
+        homeScreen.createHomeScreen(home_screen_switch).show();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("home_screen.fxml"));
         StockScreenController stockScreenController = loader.getController(); 
     }
+
 
     @FXML protected void handleStockCountsSwitch(ActionEvent event) throws Exception
     {
@@ -101,30 +102,63 @@ public class StockScreenController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Upload Stocks CSV");
         File file = fileChooser.showOpenDialog(new Stage());
-//        if (file != null){
-//            try{
-//                processCSV(file);
-//            } catch(IOException | SQLException error){
-//                error.printStackTrace();
-//            }
-//
-//        }
+        if (file != null){
+            try{
+                processCSV(file);
+            } catch(IOException | SQLException error){
+                error.printStackTrace();
+            }
+
+        }
     }
-//    @FXML protected void processCSV(File file) throws IOException, SQLException {
-//        String url = "jdbc:mysql://127.0.0.1:3306/project?serverTimezone=GMT";
-//        String user = "root";
-//        String password = "Password";
+
+    private void processCSV(File file) throws IOException, SQLException {
+        // Database connection parameters
+        try (Connection connection = DriverManager.getConnection(MainApp.url, MainApp.user, MainApp.password)) {
+            // Read the CSV file
+            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] data = line.split(",");
+                    // SQL query to update product stock based on CSV data
+                    String sql = "UPDATE game SET stock = ? WHERE game_id = ?";
+                    try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                        // Parse CSV data and update product stock
+                        statement.setInt(1, Integer.parseInt(data[1])); // Value to add to current stock
+                        statement.setString(2, data[0]); // Product ID
+                        statement.executeUpdate();
+                    } catch (NumberFormatException e) {
+                        // Handle parsing errors gracefully
+                        System.err.println("Error parsing stock value: " + e.getMessage());
+                    }
+                }
+            }
+        }
+    }
+
+//    private ObservableList<Game> getCharacters(){
+//        ObservableList<Game> games = FXCollections.observableArrayList();
+//        games.add(new GameOfThronesCharacter("Cersei","Lannister","Queen Regent",100000));
 //
-//        try (Connection connection = DriverManager.getConnection()) {
-//            try (BufferedReader br = new BufferedReader(new FileReader(file))){
-//                String line;
-//                while ((line = br.readLine()) != null) {
-//                    String[] data = line.split(",");
-//                }
-//            }
-//        }
-//
+//        return characters;
 //    }
+//    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+//        //nameColumn
+//        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+//
+//        //allegianceColumn
+//        allegianceColumn.setCellValueFactory(new PropertyValueFactory<>("allegiance"));
+//
+//        //positionColumn
+//        positionColumn.setCellValueFactory(new PropertyValueFactory<>("position"));
+//
+//        //salaryColumn
+//        salaryColumn.setCellValueFactory(new PropertyValueFactory<>("salary"));
+//
+//        //table = new TableView<>();
+//        table.setItems(getCharacters());
+    }
 
 
 }

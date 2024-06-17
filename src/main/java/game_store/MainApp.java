@@ -9,6 +9,10 @@ import javafx.stage.Stage;
 import java.util.Objects;
 
 public class MainApp extends Application{
+
+    public static String url = "jdbc:mysql://127.0.0.1:3306/summative_database?serverTimezone=GMT";
+    public static String user = "root";
+    public static String password = "Password";
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login_window.fxml")));

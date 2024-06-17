@@ -27,10 +27,6 @@ public class Console extends Product {
 
     public boolean getHybrid() {return hybrid;}
 
-    public boolean isHybrid() {
-        return hybrid;
-    }
-
     public void setHybrid(boolean hybrid) {
         this.hybrid = hybrid;
     }

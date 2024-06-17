@@ -58,8 +58,4 @@ public class Product {
     public void setSale(boolean sale) {
         this.sale = sale;
     }
-
-    public boolean isSale() {
-        return sale;
-    }
 }
