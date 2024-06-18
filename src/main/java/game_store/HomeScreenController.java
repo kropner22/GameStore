@@ -12,7 +12,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.sql.*;
-import java.util.List;
 import java.util.Objects;
 
 import static game_store.MainApp.*;
@@ -25,9 +24,6 @@ public class HomeScreenController {
     @FXML private Button report_screen_switch;
     @FXML private BarChart<String, Number> gameBarChart;
     @FXML private BarChart<String, Number> consoleBarChart;
-
-    @FXML private Text lowestStockGame;
-    @FXML private Text LowestStockConsole;
 
     //handling menu buttons for home screen
     @FXML protected void handleHomeSwitch() throws Exception
@@ -68,20 +64,6 @@ public class HomeScreenController {
 
         loader.getController();
     }
-    @FXML
-    private Text welcomeMessage;
-
-    public void getGivenName(String name){
-        welcomeMessage.setText("Welcome to the game store " + name);
-    }
-
-
-
-    public void getLowestStockGame(){
-        List<?> list = DatabaseConnection.getLowestStockGame();
-        lowestStockGame.setText("Lowest Stock Game: " + list);
-    }
-
     //bar chart for game stocks
     public void getGameBarChartData(){
         try (Connection connection = DriverManager.getConnection(url, user, password)) {

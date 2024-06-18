@@ -3,14 +3,12 @@ package game_store;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.BarChart;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import org.hibernate.query.Query;
+
 
 import java.io.IOException;
 
-import static game_store.DatabaseConnection.databaseSession;
 
 public class HomeScreen {
 

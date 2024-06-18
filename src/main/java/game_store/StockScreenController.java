@@ -1,7 +1,6 @@
 //imports for stock screen
 package game_store;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,7 +28,6 @@ public class StockScreenController {
     @FXML private Button home_screen_switch;
     @FXML private Button stock_screen_switch;
     @FXML private Button report_screen_switch;
-    @FXML private Button upload_stocks;
 
     @FXML private TableView<Game> GameTable;
     @FXML private TableColumn<Game, String> name;
