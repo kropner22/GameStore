@@ -96,11 +96,12 @@ public class StockScreenController {
                 while ((line = br.readLine()) != null) {
                     String[] data = line.split(",");
                     // SQL query to update product stock based on CSV data
-                    String sql = "UPDATE summative_database.game SET stock = stock + ? WHERE name = ?";
+                    String sql = "UPDATE summative_database.game SET stock = stock + ?, sale = ? WHERE name = ?";
                     try (PreparedStatement statement = connection.prepareStatement(sql)) {
                         // Parse CSV data and update product stock
                         statement.setInt(1, Integer.parseInt(data[1]));
-                        statement.setString(2, data[0]);
+                        statement.setBoolean(2, Boolean.parseBoolean(data[2]));
+                        statement.setString(3, data[0]);
                         statement.executeUpdate();
                     } catch (NumberFormatException error) {
                         System.err.println("Error parsing stock value: " + error.getMessage());
